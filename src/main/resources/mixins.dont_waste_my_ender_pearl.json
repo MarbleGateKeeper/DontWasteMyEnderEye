@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "love.marblegate.dontwastemyendereye",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinWidget"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "mixins.dont_waste_my_ender_eye.refmap.json"
+}
