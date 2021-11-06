@@ -41,7 +41,7 @@ public class MixinEnderEyeItem {
     public Entity captureEnderEyeBreak(Entity entity){
         // Pre Handling Ender Eye Break
         if(entity.level instanceof ServerWorld && entity.level.dimension().equals(World.OVERWORLD)){
-            if(((AccessorEyeOfEnderEntity) (EyeOfEnderEntity) entity).getSurviveAfterDeath()){
+            if(!((AccessorEyeOfEnderEntity) (Object) (EyeOfEnderEntity) entity).getSurviveAfterDeath()){
                 EnderEyeDestroyData data = EnderEyeDestroyData.get(entity.level);
                 DontWatseMyEnderEye.LOGGER.warn("Successfully Reach A3 - " + data);
 
@@ -51,7 +51,6 @@ public class MixinEnderEyeItem {
                         data.increaseCount(throwerUUID);
                     }
                 } else {
-
                     data.increaseCount(null);
                 }
             }

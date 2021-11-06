@@ -12,8 +12,6 @@ public class CreateCacheHandler {
     public static void load(WorldEvent.Load event){
         if(DontWatseMyEnderEye.EYE_THROW_CACHE == null){
             DontWatseMyEnderEye.EYE_THROW_CACHE = new EyeThrowCache();
-
-            DontWatseMyEnderEye.LOGGER.warn("EYE_THROW_CACHE has been created");
         }
 
     }

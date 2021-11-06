@@ -75,6 +75,23 @@ public class EnderEyeDestroyData extends WorldSavedData {
         }
     }
 
+    public void decreaseCount(@Nullable UUID uuid){
+        if(shared) {
+            count = Math.max(0,count - 1);
+            setDirty();
+
+            DontWatseMyEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
+        }
+        else{
+            if(uuid!=null){
+                countMap.put(uuid,Math.max(0,countMap.get(uuid)-1));
+                setDirty();
+
+                DontWatseMyEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
+            }
+        }
+    }
+
     public EnderEyeDestroyData() {
         super("endereyedestroy");
         shared = !Configuration.INDIVIDUAL_MODE.get();
