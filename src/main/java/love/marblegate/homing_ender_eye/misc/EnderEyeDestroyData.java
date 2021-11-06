@@ -1,8 +1,8 @@
-package love.marblegate.dontwastemyendereye.misc;
+package love.marblegate.homing_ender_eye.misc;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import love.marblegate.dontwastemyendereye.DontWatseMyEnderEye;
+import love.marblegate.homing_ender_eye.HomingEnderEye;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -59,7 +59,7 @@ public class EnderEyeDestroyData extends WorldSavedData {
             count += 1;
             setDirty();
 
-            DontWatseMyEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
+            // HomingEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
         }
         else{
             if(uuid!=null){
@@ -70,7 +70,7 @@ public class EnderEyeDestroyData extends WorldSavedData {
                 }
                 setDirty();
 
-                DontWatseMyEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
+                // HomingEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
             }
         }
     }
@@ -80,14 +80,14 @@ public class EnderEyeDestroyData extends WorldSavedData {
             count = Math.max(0,count - 1);
             setDirty();
 
-            DontWatseMyEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
+            // HomingEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
         }
         else{
             if(uuid!=null){
                 countMap.put(uuid,Math.max(0,countMap.get(uuid)-1));
                 setDirty();
 
-                DontWatseMyEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
+                // HomingEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
             }
         }
     }

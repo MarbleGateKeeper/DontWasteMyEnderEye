@@ -1,7 +1,7 @@
-package love.marblegate.dontwastemyendereye;
+package love.marblegate.homing_ender_eye;
 
-import love.marblegate.dontwastemyendereye.misc.Configuration;
-import love.marblegate.dontwastemyendereye.misc.EyeThrowCache;
+import love.marblegate.homing_ender_eye.misc.Configuration;
+import love.marblegate.homing_ender_eye.misc.EyeThrowCache;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -9,14 +9,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-@Mod("dont_waste_my_ender_eye")
-public class DontWatseMyEnderEye {
+@Mod("homing_ender_eye")
+public class HomingEnderEye {
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
 
     public static EyeThrowCache EYE_THROW_CACHE;
 
-    public DontWatseMyEnderEye() {
+    public HomingEnderEye() {
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Configuration.MOD_CONFIG);
 

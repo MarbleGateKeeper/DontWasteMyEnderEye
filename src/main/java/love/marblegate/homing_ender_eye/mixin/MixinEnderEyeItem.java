@@ -1,8 +1,8 @@
-package love.marblegate.dontwastemyendereye.mixin;
+package love.marblegate.homing_ender_eye.mixin;
 
-import love.marblegate.dontwastemyendereye.DontWatseMyEnderEye;
-import love.marblegate.dontwastemyendereye.misc.Configuration;
-import love.marblegate.dontwastemyendereye.misc.EnderEyeDestroyData;
+import love.marblegate.homing_ender_eye.HomingEnderEye;
+import love.marblegate.homing_ender_eye.misc.Configuration;
+import love.marblegate.homing_ender_eye.misc.EnderEyeDestroyData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EyeOfEnderEntity;
@@ -30,7 +30,7 @@ public class MixinEnderEyeItem {
         // Only works if the mode is running on Individual Mode
         if(p_77659_1_ instanceof ServerWorld && p_77659_1_.dimension().equals(World.OVERWORLD) ){
             if(Configuration.INDIVIDUAL_MODE.get()){
-                DontWatseMyEnderEye.EYE_THROW_CACHE.putThrowRecord(p_77659_2_.getUUID());
+                HomingEnderEye.EYE_THROW_CACHE.putThrowRecord(p_77659_2_.getUUID());
             }
         }
 
@@ -43,10 +43,10 @@ public class MixinEnderEyeItem {
         if(entity.level instanceof ServerWorld && entity.level.dimension().equals(World.OVERWORLD)){
             if(!((AccessorEyeOfEnderEntity) (Object) (EyeOfEnderEntity) entity).getSurviveAfterDeath()){
                 EnderEyeDestroyData data = EnderEyeDestroyData.get(entity.level);
-                DontWatseMyEnderEye.LOGGER.warn("Successfully Reach A3 - " + data);
+                HomingEnderEye.LOGGER.warn("Successfully Reach A3 - " + data);
 
                 if(Configuration.INDIVIDUAL_MODE.get()){
-                    UUID throwerUUID = DontWatseMyEnderEye.EYE_THROW_CACHE.retrieveThrowerRecord();
+                    UUID throwerUUID = HomingEnderEye.EYE_THROW_CACHE.retrieveThrowerRecord();
                     if(throwerUUID!=null){
                         data.increaseCount(throwerUUID);
                     }

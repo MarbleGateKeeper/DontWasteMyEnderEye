@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "love.marblegate.dontwastemyendereye.mixin",
+  "package": "love.marblegate.homing_ender_eye.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinEnderEyeItem",
@@ -9,5 +9,5 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "refmap": "mixins.dont_waste_my_ender_eye.refmap.json"
+  "refmap": "mixins.homing_ender_eye.refmap.json"
 }

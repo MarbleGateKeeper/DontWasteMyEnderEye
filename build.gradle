@@ -18,7 +18,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = '0.1.0'
 group = 'love.marblegate' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'dont_waste_my_ender_eye-1.16.5-beta'
+archivesBaseName = 'homing_ender_eye-1.16.5-beta'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 
@@ -58,10 +58,10 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
-            arg "-mixin.config=mixins.dont_waste_my_ender_eye.json"
+            arg "-mixin.config=mixins.homing_ender_eye.json"
 
             mods {
-                dont_waste_my_ender_eye {
+                homing_ender_eye {
                     source sourceSets.main
                 }
             }
@@ -82,10 +82,10 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
-            arg "-mixin.config=mixins.dont_waste_my_ender_eye.json"
+            arg "-mixin.config=mixins.homing_ender_eye.json"
 
             mods {
-                dont_waste_my_ender_eye {
+                homing_ender_eye {
                     source sourceSets.main
                 }
             }
@@ -107,10 +107,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'dont_waste_my_ender_eye', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'homing_ender_eye', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                dont_waste_my_ender_eye {
+                homing_ender_eye {
                     source sourceSets.main
                 }
             }
@@ -122,7 +122,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 mixin {
-    add sourceSets.main, "mixins.dont_waste_my_ender_eye.refmap.json"
+    add sourceSets.main, "mixins.homing_ender_eye.refmap.json"
 
     debug.verbose = true
     debug.export = true
@@ -161,14 +161,14 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "dont_waste_my_ender_eye",
+            "Specification-Title": "homing_ender_eye",
             "Specification-Vendor": "marblegate.love",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"marblegate.love",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs": "mixins.dont_waste_my_ender_eye.json"
+            "MixinConfigs": "mixins.homing_ender_eye.json"
         ])
     }
 }

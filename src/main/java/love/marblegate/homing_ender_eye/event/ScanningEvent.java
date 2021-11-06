@@ -1,7 +1,7 @@
-package love.marblegate.dontwastemyendereye.event;
+package love.marblegate.homing_ender_eye.event;
 
-import love.marblegate.dontwastemyendereye.misc.Configuration;
-import love.marblegate.dontwastemyendereye.misc.EnderEyeDestroyData;
+import love.marblegate.homing_ender_eye.misc.Configuration;
+import love.marblegate.homing_ender_eye.misc.EnderEyeDestroyData;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.EndPortalFrameBlock;
