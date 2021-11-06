@@ -1,11 +1,22 @@
 package love.marblegate.dontwastemyendereye.misc;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import javax.annotation.Nullable;
+import java.util.*;
 
 public class EyeThrowCache {
-    // Ender Eye : Player
-    Map<UUID,UUID> Cache = new HashMap<>();
+    Queue<UUID> cache = new LinkedList<>();
+
+    public void putThrowRecord(UUID uuid){
+        cache.add(uuid);
+    }
+
+    @Nullable
+    public UUID retrieveThrowerRecord(){
+        return cache.poll();
+    }
+
+    public UUID peek(){
+        return cache.peek();
+    }
 
 }

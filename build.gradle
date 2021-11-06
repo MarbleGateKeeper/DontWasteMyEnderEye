@@ -58,6 +58,8 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
+            arg "-mixin.config=mixins.dont_waste_my_ender_eye.json"
+
             mods {
                 dont_waste_my_ender_eye {
                     source sourceSets.main
@@ -79,6 +81,8 @@ minecraft {
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
+
+            arg "-mixin.config=mixins.dont_waste_my_ender_eye.json"
 
             mods {
                 dont_waste_my_ender_eye {
@@ -119,7 +123,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 mixin {
     add sourceSets.main, "mixins.dont_waste_my_ender_eye.refmap.json"
-    config 'mixins.dont_waste_my_ender_eye.json'
+
+    debug.verbose = true
+    debug.export = true
 }
 
 dependencies {

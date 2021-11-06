@@ -2,7 +2,11 @@ package love.marblegate.dontwastemyendereye.misc;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import love.marblegate.dontwastemyendereye.DontWatseMyEnderEye;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.DimensionSavedDataManager;
 import net.minecraft.world.storage.WorldSavedData;
 
 import javax.annotation.Nullable;
@@ -18,6 +22,16 @@ public class EnderEyeDestroyData extends WorldSavedData {
     private int count;
     private Map<UUID,Integer> countMap;
 
+    public static EnderEyeDestroyData get(World world){
+        if (!(world instanceof ServerWorld)) {
+            throw new RuntimeException("Attempted to get the data from a client world. This is wrong.");
+        }
+
+        ServerWorld serverWorld = world.getServer().overworld();
+        DimensionSavedDataManager dimensionSavedDataManager = serverWorld.getDataStorage();
+        return dimensionSavedDataManager.computeIfAbsent(EnderEyeDestroyData::new, "endereyedestroy");
+    }
+
     public int getCount(@Nullable UUID uuid) {
         if(shared){
             return count;
@@ -27,10 +41,36 @@ public class EnderEyeDestroyData extends WorldSavedData {
     }
 
     public void setCount(@Nullable UUID uuid, int count) {
-        if(shared) this.count = count;
+        count = Math.max(count, 0);
+        if(shared) {
+            this.count = count;
+            setDirty();
+        }
         else{
             if(uuid!=null){
                 countMap.put(uuid,count);
+                setDirty();
+            }
+        }
+    }
+
+    public void increaseCount(@Nullable UUID uuid){
+        if(shared) {
+            count += 1;
+            setDirty();
+
+            DontWatseMyEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
+        }
+        else{
+            if(uuid!=null){
+                if(countMap.containsKey(uuid)){
+                    countMap.put(uuid,countMap.get(uuid)+1);
+                } else {
+                    countMap.put(uuid,1);
+                }
+                setDirty();
+
+                DontWatseMyEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
             }
         }
     }
