@@ -22,6 +22,15 @@ public class EnderEyeDestroyData extends WorldSavedData {
     private int count;
     private Map<UUID,Integer> countMap;
 
+    public EnderEyeDestroyData() {
+        super("endereyedestroy");
+        shared = !Configuration.INDIVIDUAL_MODE.get();
+        count = 0;
+        gson = new Gson();
+        countMap = new HashMap<>();
+        type = new TypeToken<HashMap<UUID,Integer>>() {}.getType();
+    }
+
     public static EnderEyeDestroyData get(World world){
         if (!(world instanceof ServerWorld)) {
             throw new RuntimeException("Attempted to get the data from a client world. This is wrong.");
@@ -58,8 +67,6 @@ public class EnderEyeDestroyData extends WorldSavedData {
         if(shared) {
             count += 1;
             setDirty();
-
-            // HomingEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
         }
         else{
             if(uuid!=null){
@@ -69,8 +76,6 @@ public class EnderEyeDestroyData extends WorldSavedData {
                     countMap.put(uuid,1);
                 }
                 setDirty();
-
-                // HomingEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
             }
         }
     }
@@ -79,51 +84,27 @@ public class EnderEyeDestroyData extends WorldSavedData {
         if(shared) {
             count = Math.max(0,count - 1);
             setDirty();
-
-            // HomingEnderEye.LOGGER.warn("Shared-mode EnderEyeDestroyData has been modified:" + count);
         }
         else{
             if(uuid!=null){
                 countMap.put(uuid,Math.max(0,countMap.get(uuid)-1));
                 setDirty();
-
-                // HomingEnderEye.LOGGER.warn("Individual-mode EnderEyeDestroyData has been modified:" + uuid + " - " + countMap.get(uuid));
             }
-        }
-    }
-
-    public EnderEyeDestroyData() {
-        super("endereyedestroy");
-        shared = !Configuration.INDIVIDUAL_MODE.get();
-        if(shared) count = 0;
-        else{
-            gson = new Gson();
-            countMap = new HashMap<>();
-            type = new TypeToken<HashMap<UUID,Integer>>() {}.getType();
         }
     }
 
     @Override
     public void load(CompoundNBT compoundNBT) {
-        if(shared){
-            if(compoundNBT.contains("shared_destroy_count"))
-                count = compoundNBT.getInt("shared_destroy_count");
-            else count = 0;
-        } else {
-            if(compoundNBT.contains("individual_destroy_count"))
-                countMap = gson.fromJson(compoundNBT.getString("individual_destroy_count"),type);
-            else countMap = new HashMap<>();
-        }
-
+        if(compoundNBT.contains("shared_destroy_count"))
+            count = compoundNBT.getInt("shared_destroy_count");
+        if(compoundNBT.contains("individual_destroy_count"))
+            countMap = gson.fromJson(compoundNBT.getString("individual_destroy_count"),type);
     }
 
     @Override
     public CompoundNBT save(CompoundNBT compoundNBT) {
-        if(shared) compoundNBT.putInt("shared_destroy_count",count);
-        else{
-            String serialized = gson.toJson(countMap,type);
-            compoundNBT.putString("individual_destroy_count",serialized);
-        }
+        compoundNBT.putInt("shared_destroy_count",count);
+        compoundNBT.putString("individual_destroy_count",gson.toJson(countMap,type));
         return compoundNBT;
     }
 }
