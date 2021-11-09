@@ -16,7 +16,7 @@ apply plugin: 'maven-publish'
 // MixinGradle:
 apply plugin: 'org.spongepowered.mixin'
 
-version = '0.1.0'
+version = '0.1.1'
 group = 'love.marblegate' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'homing_ender_eye-1.16.5-beta'
 
