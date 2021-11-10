@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "love.marblegate.homing_ender_eye.mixin",
+  "package": "love.marblegate.homingendereye.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinEnderEyeItem",

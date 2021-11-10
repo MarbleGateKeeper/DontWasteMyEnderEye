@@ -1,7 +1,7 @@
-package love.marblegate.homing_ender_eye.event;
+package love.marblegate.homingendereye.event;
 
-import love.marblegate.homing_ender_eye.HomingEnderEye;
-import love.marblegate.homing_ender_eye.misc.EyeThrowCache;
+import love.marblegate.homingendereye.HomingEnderEye;
+import love.marblegate.homingendereye.misc.EyeThrowCache;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -1,7 +1,7 @@
-package love.marblegate.homing_ender_eye;
+package love.marblegate.homingendereye;
 
-import love.marblegate.homing_ender_eye.misc.Configuration;
-import love.marblegate.homing_ender_eye.misc.EyeThrowCache;
+import love.marblegate.homingendereye.misc.Configuration;
+import love.marblegate.homingendereye.misc.EyeThrowCache;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;

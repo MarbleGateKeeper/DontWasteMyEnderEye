@@ -1,4 +1,4 @@
-package love.marblegate.homing_ender_eye.misc;
+package love.marblegate.homingendereye.misc;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

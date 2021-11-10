@@ -1,4 +1,4 @@
-package love.marblegate.homing_ender_eye.mixin;
+package love.marblegate.homingendereye.mixin;
 
 import net.minecraft.entity.projectile.EyeOfEnderEntity;
 import org.spongepowered.asm.mixin.Mixin;

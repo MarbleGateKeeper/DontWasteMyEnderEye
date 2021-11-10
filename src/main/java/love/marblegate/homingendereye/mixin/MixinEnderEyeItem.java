@@ -1,8 +1,8 @@
-package love.marblegate.homing_ender_eye.mixin;
+package love.marblegate.homingendereye.mixin;
 
-import love.marblegate.homing_ender_eye.HomingEnderEye;
-import love.marblegate.homing_ender_eye.misc.Configuration;
-import love.marblegate.homing_ender_eye.misc.EnderEyeDestroyData;
+import love.marblegate.homingendereye.HomingEnderEye;
+import love.marblegate.homingendereye.misc.Configuration;
+import love.marblegate.homingendereye.misc.EnderEyeDestroyData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.EyeOfEnderEntity;
@@ -43,16 +43,18 @@ public class MixinEnderEyeItem {
         if(entity.level instanceof ServerWorld && entity.level.dimension().equals(World.OVERWORLD)){
             if(!((AccessorEyeOfEnderEntity) (Object) (EyeOfEnderEntity) entity).getSurviveAfterDeath()){
                 EnderEyeDestroyData data = EnderEyeDestroyData.get(entity.level);
-                HomingEnderEye.LOGGER.warn("Successfully Reach A3 - " + data);
-
                 if(Configuration.INDIVIDUAL_MODE.get()){
-                    UUID throwerUUID = HomingEnderEye.EYE_THROW_CACHE.retrieveThrowerRecord();
+                    UUID throwerUUID = HomingEnderEye.EYE_THROW_CACHE.peek();
                     if(throwerUUID!=null){
                         data.increaseCount(throwerUUID);
                     }
                 } else {
                     data.increaseCount(null);
                 }
+            }
+            // Once a eye is thrown, remove a record
+            if(Configuration.INDIVIDUAL_MODE.get()){
+                HomingEnderEye.EYE_THROW_CACHE.retrieveThrowerRecord();
             }
         }
         return entity;

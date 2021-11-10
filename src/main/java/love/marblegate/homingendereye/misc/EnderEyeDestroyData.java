@@ -1,8 +1,7 @@
-package love.marblegate.homing_ender_eye.misc;
+package love.marblegate.homingendereye.misc;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import love.marblegate.homing_ender_eye.HomingEnderEye;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
