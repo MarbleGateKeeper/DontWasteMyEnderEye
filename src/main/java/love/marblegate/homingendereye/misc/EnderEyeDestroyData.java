@@ -2,11 +2,11 @@ package love.marblegate.homingendereye.misc;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.DimensionSavedDataManager;
-import net.minecraft.world.storage.WorldSavedData;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.minecraft.world.level.saveddata.SavedData;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Type;
@@ -14,15 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class EnderEyeDestroyData extends WorldSavedData {
-    private Gson gson;
-    private Type type;
-    private boolean shared;
+public class EnderEyeDestroyData extends SavedData {
+    private final Gson gson;
+    private final Type type;
+    private final boolean shared;
     private int count;
     private Map<UUID,Integer> countMap;
 
     public EnderEyeDestroyData() {
-        super("endereyedestroy");
         shared = !Configuration.INDIVIDUAL_MODE.get();
         count = 0;
         gson = new Gson();
@@ -30,14 +29,14 @@ public class EnderEyeDestroyData extends WorldSavedData {
         type = new TypeToken<HashMap<UUID,Integer>>() {}.getType();
     }
 
-    public static EnderEyeDestroyData get(World world){
-        if (!(world instanceof ServerWorld)) {
+    public static EnderEyeDestroyData get(Level world){
+        if (!(world instanceof ServerLevel)) {
             throw new RuntimeException("Attempted to get the data from a client world. This is wrong.");
         }
 
-        ServerWorld serverWorld = world.getServer().overworld();
-        DimensionSavedDataManager dimensionSavedDataManager = serverWorld.getDataStorage();
-        return dimensionSavedDataManager.computeIfAbsent(EnderEyeDestroyData::new, "endereyedestroy");
+        ServerLevel serverWorld = world.getServer().overworld();
+        DimensionDataStorage dimensionSavedDataManager = serverWorld.getDataStorage();
+        return dimensionSavedDataManager.computeIfAbsent(EnderEyeDestroyData::load,EnderEyeDestroyData::new, "endereyedestroy");
     }
 
     public int getCount(@Nullable UUID uuid) {
@@ -92,16 +91,17 @@ public class EnderEyeDestroyData extends WorldSavedData {
         }
     }
 
-    @Override
-    public void load(CompoundNBT compoundNBT) {
+    public static EnderEyeDestroyData load(CompoundTag compoundNBT){
+        EnderEyeDestroyData enderEyeDestroyData = new EnderEyeDestroyData();
         if(compoundNBT.contains("shared_destroy_count"))
-            count = compoundNBT.getInt("shared_destroy_count");
+            enderEyeDestroyData.count = compoundNBT.getInt("shared_destroy_count");
         if(compoundNBT.contains("individual_destroy_count"))
-            countMap = gson.fromJson(compoundNBT.getString("individual_destroy_count"),type);
+            enderEyeDestroyData.countMap = enderEyeDestroyData.gson.fromJson(compoundNBT.getString("individual_destroy_count"),enderEyeDestroyData.type);
+        return enderEyeDestroyData;
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compoundNBT) {
+    public CompoundTag save(CompoundTag compoundNBT) {
         compoundNBT.putInt("shared_destroy_count",count);
         compoundNBT.putString("individual_destroy_count",gson.toJson(countMap,type));
         return compoundNBT;
