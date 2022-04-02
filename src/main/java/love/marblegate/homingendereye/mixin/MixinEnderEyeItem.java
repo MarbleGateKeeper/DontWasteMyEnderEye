@@ -42,14 +42,16 @@ public class MixinEnderEyeItem {
         // Pre Handling Ender Eye Break
         if(entity.level instanceof ServerWorld && entity.level.dimension().equals(World.OVERWORLD)){
             if(!((AccessorEyeOfEnderEntity) (Object) (EyeOfEnderEntity) entity).getSurviveAfterDeath()){
-                EnderEyeDestroyData data = EnderEyeDestroyData.get(entity.level);
-                if(Configuration.INDIVIDUAL_MODE.get()){
-                    UUID throwerUUID = HomingEnderEye.EYE_THROW_CACHE.peek();
-                    if(throwerUUID!=null){
-                        data.increaseCount(throwerUUID);
+                if(Math.random()<Configuration.WARPING_PROBABILITY.get()){
+                    EnderEyeDestroyData data = EnderEyeDestroyData.get(entity.level);
+                    if(Configuration.INDIVIDUAL_MODE.get()){
+                        UUID throwerUUID = HomingEnderEye.EYE_THROW_CACHE.peek();
+                        if(throwerUUID!=null){
+                            data.increaseCount(throwerUUID);
+                        }
+                    } else {
+                        data.increaseCount(null);
                     }
-                } else {
-                    data.increaseCount(null);
                 }
             }
             // Once a eye is thrown, remove a record
