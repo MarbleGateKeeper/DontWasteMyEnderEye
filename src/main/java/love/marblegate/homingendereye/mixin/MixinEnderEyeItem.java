@@ -3,6 +3,8 @@ package love.marblegate.homingendereye.mixin;
 import love.marblegate.homingendereye.HomingEnderEye;
 import love.marblegate.homingendereye.misc.Configuration;
 import love.marblegate.homingendereye.misc.EnderEyeDestroyData;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EyeOfEnder;
@@ -42,14 +44,16 @@ public class MixinEnderEyeItem {
         // Pre Handling Ender Eye Break
         if(entity.level instanceof ServerLevel && entity.level.dimension().equals(Level.OVERWORLD)){
             if(!((AccessorEyeOfEnderEntity) (Object) (EyeOfEnder) entity).getSurviveAfterDeath()){
-                EnderEyeDestroyData data = EnderEyeDestroyData.get(entity.level);
-                if(Configuration.INDIVIDUAL_MODE.get()){
-                    UUID throwerUUID = HomingEnderEye.EYE_THROW_CACHE.peek();
-                    if(throwerUUID!=null){
-                        data.increaseCount(throwerUUID);
+                if(Math.random()<Configuration.WARPING_PROBABILITY.get()){
+                    EnderEyeDestroyData data = EnderEyeDestroyData.get(entity.level);
+                    if(Configuration.INDIVIDUAL_MODE.get()){
+                        UUID throwerUUID = HomingEnderEye.EYE_THROW_CACHE.peek();
+                        if(throwerUUID!=null){
+                            data.increaseCount(throwerUUID);
+                        }
+                    } else {
+                        data.increaseCount(null);
                     }
-                } else {
-                    data.increaseCount(null);
                 }
             }
             // Once a eye is thrown, remove a record
