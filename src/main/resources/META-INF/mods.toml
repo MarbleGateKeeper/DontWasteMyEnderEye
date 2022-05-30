@@ -25,13 +25,13 @@ displayName="Homing Ender Eye" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="https://marblegate.love/" #optional
+displayURL="https://github.com/MarbleGateKeeper" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits="MarbleGateKeeper 白门守望者" #optional
+# credits="" #optional
 # A text field displayed in the mod UI
-authors="MarbleGate 纯白之门" #optional
+authors="MarbleGateKeeper" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 Oh Alex...The eye of ender did not disappear or break. It just went to the path homing.
