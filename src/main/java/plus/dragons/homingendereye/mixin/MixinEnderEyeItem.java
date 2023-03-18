@@ -1,10 +1,8 @@
-package love.marblegate.homingendereye.mixin;
+package plus.dragons.homingendereye.mixin;
 
-import love.marblegate.homingendereye.HomingEnderEye;
-import love.marblegate.homingendereye.misc.Configuration;
-import love.marblegate.homingendereye.misc.EnderEyeDestroyData;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
+import plus.dragons.homingendereye.HomingEnderEye;
+import plus.dragons.homingendereye.misc.Configuration;
+import plus.dragons.homingendereye.misc.EnderEyeDestroyData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EyeOfEnder;

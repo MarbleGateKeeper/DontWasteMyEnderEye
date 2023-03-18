@@ -1,7 +1,7 @@
-package love.marblegate.homingendereye.event;
+package plus.dragons.homingendereye.event;
 
-import love.marblegate.homingendereye.HomingEnderEye;
-import love.marblegate.homingendereye.misc.EyeThrowCache;
+import plus.dragons.homingendereye.HomingEnderEye;
+import plus.dragons.homingendereye.misc.EyeThrowCache;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

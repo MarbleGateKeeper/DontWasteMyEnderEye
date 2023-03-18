@@ -1,7 +1,7 @@
-package love.marblegate.homingendereye.event;
+package plus.dragons.homingendereye.event;
 
-import love.marblegate.homingendereye.misc.Configuration;
-import love.marblegate.homingendereye.misc.EnderEyeDestroyData;
+import plus.dragons.homingendereye.misc.Configuration;
+import plus.dragons.homingendereye.misc.EnderEyeDestroyData;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EndPortalFrameBlock;
