@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "homing_ender_eye",
+  "version": "${version}",
+  "name": "Homing Ender Eye",
+  "description": "Oh Alex...The eye of ender did not disappear or break. It just went to the path homing.",
+  "authors": [
+    "MarbleGateKeeper"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/homing-ender-eye",
+    "sources": "https://github.com/DragonsPlusMinecraft/HomingEnderEye"
+  },
+  "license": "MIT",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "plus.dragons.homingendereye.fabric.HomingEnderEyeFabric"
+    ],
+    "modmenu": [
+      "plus.dragons.homingendereye.fabric.misc.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "homing_ender_eye-common.mixins.json",
+    "homing_ender_eye.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.20"
+  }
+}
