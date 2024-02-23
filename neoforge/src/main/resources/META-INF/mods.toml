@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="MIT"
+[[mods]]
+modId="homing_ender_eye"
+version = "${version}"
+displayName="Homing Ender Eye"
+displayURL="https://github.com/DragonsPlusMinecraft/HomingEnderEye"
+logoFile="logo.png"
+authors="MarbleGateKeeper"
+description='''
+Oh Alex...The eye of ender did not disappear or break. It just went to the path homing.
+'''
+[[dependencies.homing_ender_eye]]
+modId="neoforge"
+type="required"
+versionRange="[2,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.homing_ender_eye]]
+modId="minecraft"
+type="required"
+versionRange="[1.20.4,1.21)"
+ordering="NONE"
+side="BOTH"
+[[mixins]]
+config="homing_ender_eye-common.mixins.json"

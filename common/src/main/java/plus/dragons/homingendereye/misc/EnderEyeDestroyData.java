@@ -55,6 +55,10 @@ public class EnderEyeDestroyData extends PersistentState {
         return enderEyeDestroyData;
     }
 
+    public static PersistentState.Type<EnderEyeDestroyData> getPersistentStateType() {
+        return new PersistentState.Type<>(EnderEyeDestroyData::new, tag -> EnderEyeDestroyData.readNbt((NbtCompound) tag), null);
+    }
+
     public static EnderEyeDestroyData get(World world){
         if (!(world instanceof ServerWorld)) {
             throw new RuntimeException("Attempted to get the data from a client world. This is wrong.");
@@ -62,7 +66,7 @@ public class EnderEyeDestroyData extends PersistentState {
 
         ServerWorld serverWorld = world.getServer().getOverworld();
         PersistentStateManager manager = serverWorld.getPersistentStateManager();
-        return manager.getOrCreate(EnderEyeDestroyData::readNbt,EnderEyeDestroyData::new, "EnderEyeDestroyData");
+        return manager.getOrCreate(EnderEyeDestroyData.getPersistentStateType(), "EnderEyeDestroyData");
     }
 
     public int getCount(@Nullable UUID uuid) {
