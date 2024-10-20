@@ -5,8 +5,8 @@ permissions:
   contents: write
 
 env:
-  MINECRAFT_VERSION: 1.20.4
-  JAVA_VERSION: 17
+  MINECRAFT_VERSION: 1.21.1
+  JAVA_VERSION: 21
   VERSION: 2.1.0
   MODRINTH_ID: k7kuEnwe
   CURSEFORGE_ID: 544990
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: "temurin"
-          java-version: 17
+          java-version: 21
 
       - name: Make Gradle Wrapper Executable
         if: ${{ runner.os != 'Windows' }}
