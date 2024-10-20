@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[2,)"
+loaderVersion="[4,)"
 license="MIT"
 [[mods]]
 modId="homing_ender_eye"
@@ -14,13 +14,13 @@ Oh Alex...The eye of ender did not disappear or break. It just went to the path 
 [[dependencies.homing_ender_eye]]
 modId="neoforge"
 type="required"
-versionRange="[2,)"
+versionRange = "[21.0,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.homing_ender_eye]]
 modId="minecraft"
 type="required"
-versionRange="[1.20.4,1.21)"
+versionRange = "[1.21,1.22)"
 ordering="NONE"
 side="BOTH"
 [[mixins]]

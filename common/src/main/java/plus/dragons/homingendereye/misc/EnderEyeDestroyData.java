@@ -2,6 +2,7 @@ package plus.dragons.homingendereye.misc;
 
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.PersistentState;
 import net.minecraft.world.PersistentStateManager;
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class EnderEyeDestroyData extends PersistentState {
     private final boolean shared;
     private int count;
-    private Map<UUID,Integer> countMap;
+    private final Map<UUID,Integer> countMap;
 
     public EnderEyeDestroyData() {
         shared = !Configuration.isIndividualMode();
@@ -25,7 +26,7 @@ public class EnderEyeDestroyData extends PersistentState {
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public NbtCompound writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         nbt.putInt("SharedCount",count);
         var individualNbt = new NbtCompound();
         var listNbt = new NbtList();
@@ -56,7 +57,7 @@ public class EnderEyeDestroyData extends PersistentState {
     }
 
     public static PersistentState.Type<EnderEyeDestroyData> getPersistentStateType() {
-        return new PersistentState.Type<>(EnderEyeDestroyData::new, tag -> EnderEyeDestroyData.readNbt((NbtCompound) tag), null);
+        return new PersistentState.Type<>(EnderEyeDestroyData::new, (tag,lookup) -> EnderEyeDestroyData.readNbt(tag), null);
     }
 
     public static EnderEyeDestroyData get(World world){

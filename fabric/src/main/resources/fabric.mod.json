@@ -5,7 +5,7 @@
   "name": "Homing Ender Eye",
   "description": "Oh Alex...The eye of ender did not disappear or break. It just went to the path homing.",
   "authors": [
-    "MarbleGateKeeper"
+    "MarbleGate"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/homing-ender-eye",
@@ -28,6 +28,6 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.20.1"
+    "minecraft": ">=1.21.1"
   }
 }

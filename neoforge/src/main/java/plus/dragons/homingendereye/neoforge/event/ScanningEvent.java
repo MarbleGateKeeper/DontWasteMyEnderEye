@@ -4,16 +4,16 @@ package plus.dragons.homingendereye.neoforge.event;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import plus.dragons.homingendereye.misc.ScanningForEndPortal;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class ScanningEvent {
     @SubscribeEvent
-    public static void scanningForFrame(TickEvent.PlayerTickEvent event){
-        if(event.side.isServer() && event.phase.equals(TickEvent.Phase.START)){
-            ScanningForEndPortal.scan((ServerPlayerEntity) event.player,(ServerWorld) event.player.getWorld());
+    public static void scanningForFrame(PlayerTickEvent.Pre event){
+        if(!event.getEntity().getWorld().isClient){
+            ScanningForEndPortal.scan((ServerPlayerEntity) event.getEntity(),(ServerWorld) event.getEntity().getWorld());
         }
     }
 }
