@@ -5,8 +5,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.EnderEyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,7 +24,7 @@ public class EnderEyeItemMixin {
 
     @Inject(method ="use",
             at= @At(value ="INVOKE", target = "Lnet/minecraft/entity/EyeOfEnderEntity;initTargetPos(Lnet/minecraft/util/math/BlockPos;)V", shift = At.Shift.AFTER))
-    public void captureThrowSource(World world, PlayerEntity user, Hand hand_, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir){
+    public void captureThrowSource(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<ActionResult> cir){
         // Only Signal Cache to Remember Who just throw an ender eye
         // Only works if the mode is running on Individual Mode
         if(world instanceof ServerWorld && world.getRegistryKey().equals(World.OVERWORLD) ){
